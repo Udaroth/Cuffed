@@ -20,7 +20,6 @@ class CrushViewController: UIViewController {
     
     // Crush components
     
-    
     @IBOutlet weak var crushContainerView: UIView!
     
     @IBOutlet weak var orangeBackdropImageView: UIImageView!
