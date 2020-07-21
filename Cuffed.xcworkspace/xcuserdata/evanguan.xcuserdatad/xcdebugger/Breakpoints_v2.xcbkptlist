@@ -1230,8 +1230,8 @@
             filePath = "Cuffed/View Controllers/Crush/CrushViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "457"
+            endingLineNumber = "457"
             landmarkName = "searchBar(_:textDidChange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1246,8 +1246,8 @@
             filePath = "Cuffed/View Controllers/Crush/CrushViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "CrushViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -1326,8 +1326,8 @@
             filePath = "Cuffed/View Controllers/Crush/CrushViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
+            startingLineNumber = "477"
+            endingLineNumber = "477"
             landmarkName = "CrushViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -1342,8 +1342,8 @@
             filePath = "Cuffed/View Controllers/Crush/CrushViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
+            startingLineNumber = "466"
+            endingLineNumber = "466"
             landmarkName = "CrushViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -1358,8 +1358,8 @@
             filePath = "Cuffed/View Controllers/Crush/CrushViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "488"
-            endingLineNumber = "488"
+            startingLineNumber = "491"
+            endingLineNumber = "491"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1374,8 +1374,8 @@
             filePath = "Cuffed/View Controllers/Crush/CrushViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "493"
-            endingLineNumber = "493"
+            startingLineNumber = "496"
+            endingLineNumber = "496"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1697,6 +1697,22 @@
             startingLineNumber = "521"
             endingLineNumber = "521"
             landmarkName = "talkTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40F0B97D-D155-4D94-AD55-326180127884"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cuffed/View Controllers/Crush/CrushViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

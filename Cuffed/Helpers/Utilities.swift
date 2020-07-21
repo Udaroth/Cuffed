@@ -471,9 +471,9 @@ class Utilities {
 
         container.layer.shadowPath = UIBezierPath(roundedRect: image.bounds, cornerRadius: cornerRadius).cgPath
         container.layer.cornerRadius = cornerRadius
-        container.layer.shadowColor = Con.Colors.pinkTop
+        container.layer.shadowColor = UIColor.black.cgColor
         container.layer.shadowOffset = CGSize(width: 0, height: 0)
-        container.layer.shadowOpacity = 0.9
+        container.layer.shadowOpacity = 0.4
         container.layer.shadowRadius = 10
         
 
@@ -500,10 +500,10 @@ class Utilities {
 
         container.layer.shadowPath = UIBezierPath(roundedRect: image.bounds, cornerRadius: cornerRadius).cgPath
         container.layer.cornerRadius = cornerRadius
-        container.layer.shadowColor = Con.Colors.colorTopGreen
+        container.layer.shadowColor = UIColor.black.cgColor
         container.layer.shadowOffset = CGSize(width: 0, height: 0)
-        container.layer.shadowOpacity = 0.9
-        container.layer.shadowRadius = 5
+        container.layer.shadowOpacity = 0.4
+        container.layer.shadowRadius = 10
         
         
     }

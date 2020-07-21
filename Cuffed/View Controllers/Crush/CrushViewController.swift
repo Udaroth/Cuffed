@@ -68,6 +68,7 @@ class CrushViewController: UIViewController {
     
     // Tunes UIDs
     var tunes:[String]?
+
     
     
     override func viewDidLoad() {
@@ -124,16 +125,15 @@ class CrushViewController: UIViewController {
     func styleSearchBar(){
     
 
-        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
             
-            textField.backgroundColor = .white
-            textField.tintColor = .white
-            
+            textfield.backgroundColor = UIColor.white
+          
         }
         
-        searchBar.backgroundColor = .white
+//        searchBar.backgroundColor = .white
         
-        searchBar.tintColor = .white
+//        searchBar.tintColor = .white
         
         Utilities.styleSearchBarView(searchBarView)
         
@@ -343,6 +343,8 @@ extension CrushViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         if cell.cardUID == nil {
             
+            //MARK: Seems like the code isn't entering this bracket
+            // Might need to check whether we are initialising the cardUID to nil for each cell
             searchBarTextDidBeginEditing(searchBar)
             
         } else {
@@ -355,6 +357,7 @@ extension CrushViewController: UICollectionViewDelegate, UICollectionViewDataSou
             // Also animate to make the detailed card to appear
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 
+                    // TODO: Segue to the detailed card VC
 //                self.gradientEscapeButton.alpha = 0.3
 //                self.detailCardTableView.alpha = 1
                 
