@@ -131,9 +131,6 @@ class CrushViewController: UIViewController {
           
         }
         
-//        searchBar.backgroundColor = .white
-        
-//        searchBar.tintColor = .white
         
         Utilities.styleSearchBarView(searchBarView)
         

@@ -3795,7 +3795,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJe-KQ-Y9c" userLabel="Purple Backdrop">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJe-KQ-Y9c" userLabel="Pink Backdrop">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.45490196078431372" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -3913,18 +3913,32 @@
                                     <constraint firstAttribute="height" constant="30" id="NuH-fs-6TA"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOh-wp-PbJ" userLabel="Back Button">
+                                <rect key="frame" x="30" y="75.5" width="16.5" height="22.5"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="chevron.left" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                </state>
+                                <connections>
+                                    <action selector="backTapped:" destination="y29-OD-zfE" eventType="touchUpInside" id="uol-Id-uQS"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbw-x8-bRe" userLabel="searchBarView">
-                                <rect key="frame" x="37" y="61.5" width="340" height="50"/>
+                                <rect key="frame" x="76.5" y="61.5" width="307.5" height="50"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="mIp-xG-c9Q">
-                                        <rect key="frame" x="0.0" y="2" width="340" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="mIp-xG-c9Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="307" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="0vD-7i-wfk"/>
+                                        </constraints>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="340" id="VpK-hc-Rkh"/>
+                                    <constraint firstItem="mIp-xG-c9Q" firstAttribute="width" secondItem="nbw-x8-bRe" secondAttribute="width" id="77M-bA-DSn"/>
+                                    <constraint firstItem="mIp-xG-c9Q" firstAttribute="centerX" secondItem="nbw-x8-bRe" secondAttribute="centerX" id="JhG-gV-IbI"/>
+                                    <constraint firstItem="mIp-xG-c9Q" firstAttribute="centerY" secondItem="nbw-x8-bRe" secondAttribute="centerY" id="cW8-dh-qkQ"/>
                                     <constraint firstAttribute="height" constant="50" id="uah-Dh-e3L"/>
                                 </constraints>
                             </view>
@@ -3932,6 +3946,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="zJe-KQ-Y9c" firstAttribute="top" secondItem="YzR-Gb-Mpa" secondAttribute="top" id="46E-Va-Rzn"/>
+                            <constraint firstItem="Dr5-H7-b9T" firstAttribute="trailing" secondItem="nbw-x8-bRe" secondAttribute="trailing" constant="30" id="615-An-dFt"/>
                             <constraint firstItem="nbw-x8-bRe" firstAttribute="top" secondItem="Dr5-H7-b9T" secondAttribute="top" constant="17.5" id="8Yp-UB-GiZ"/>
                             <constraint firstItem="iwg-JH-fyE" firstAttribute="leading" secondItem="Dr5-H7-b9T" secondAttribute="leading" id="9aB-UJ-64J"/>
                             <constraint firstItem="iwg-JH-fyE" firstAttribute="trailing" secondItem="Dr5-H7-b9T" secondAttribute="trailing" id="Bdt-Kj-6kU"/>
@@ -3939,15 +3954,30 @@
                             <constraint firstItem="zJe-KQ-Y9c" firstAttribute="trailing" secondItem="Dr5-H7-b9T" secondAttribute="trailing" id="Csg-bW-Gc9"/>
                             <constraint firstItem="mPz-iV-GCJ" firstAttribute="centerX" secondItem="YzR-Gb-Mpa" secondAttribute="centerX" id="DVG-00-FiN"/>
                             <constraint firstItem="hr5-9G-7Pd" firstAttribute="top" secondItem="nbw-x8-bRe" secondAttribute="bottom" constant="10" id="Fmg-gL-M6l"/>
+                            <constraint firstItem="dOh-wp-PbJ" firstAttribute="leading" secondItem="Dr5-H7-b9T" secondAttribute="leading" constant="30" id="Grm-dE-RIL"/>
                             <constraint firstItem="iwg-JH-fyE" firstAttribute="top" secondItem="mPz-iV-GCJ" secondAttribute="bottom" constant="20" id="QRm-Eo-Vwi"/>
                             <constraint firstItem="zJe-KQ-Y9c" firstAttribute="leading" secondItem="Dr5-H7-b9T" secondAttribute="leading" id="TMK-gE-Hug"/>
-                            <constraint firstItem="nbw-x8-bRe" firstAttribute="centerX" secondItem="YzR-Gb-Mpa" secondAttribute="centerX" id="Zie-ec-YM6"/>
+                            <constraint firstItem="nbw-x8-bRe" firstAttribute="leading" secondItem="dOh-wp-PbJ" secondAttribute="trailing" constant="30" id="eYf-Xm-hlT"/>
                             <constraint firstAttribute="bottom" secondItem="zJe-KQ-Y9c" secondAttribute="bottom" id="mBk-Ot-nFU"/>
                             <constraint firstItem="hr5-9G-7Pd" firstAttribute="centerX" secondItem="YzR-Gb-Mpa" secondAttribute="centerX" id="v1h-Tv-1Qb"/>
                             <constraint firstAttribute="bottom" secondItem="iwg-JH-fyE" secondAttribute="bottom" id="wd2-Lk-Rwg"/>
+                            <constraint firstItem="dOh-wp-PbJ" firstAttribute="centerY" secondItem="nbw-x8-bRe" secondAttribute="centerY" id="yQp-ZS-b82"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dr5-H7-b9T"/>
                     </view>
+                    <connections>
+                        <outlet property="fbButton" destination="MfC-m6-o8g" id="yfC-T1-v0q"/>
+                        <outlet property="instaButton" destination="bTp-zq-rrK" id="j4Q-vk-Gzp"/>
+                        <outlet property="lightGrayView" destination="iwg-JH-fyE" id="WIh-Fs-rmO"/>
+                        <outlet property="searchBar" destination="mIp-xG-c9Q" id="iP4-eP-oYk"/>
+                        <outlet property="searchBarView" destination="nbw-x8-bRe" id="WOl-lO-I4O"/>
+                        <outlet property="searchLabel" destination="mPz-iV-GCJ" id="E3N-T4-fVK"/>
+                        <outlet property="searchTable" destination="yUC-8R-7NW" id="ft4-bE-4oB"/>
+                        <outlet property="snapchatButton" destination="Wrz-B4-oiE" id="n4b-GD-ocO"/>
+                        <outlet property="tiktokButton" destination="tew-0P-NeD" id="DQx-au-50m"/>
+                        <outlet property="wechatButton" destination="2Rk-PY-8Et" id="g3X-OD-gob"/>
+                        <outlet property="youtubeButton" destination="tBI-ad-JW2" id="9h5-5a-4T5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iew-SL-v9d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

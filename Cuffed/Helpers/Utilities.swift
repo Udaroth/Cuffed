@@ -575,7 +575,13 @@ class Utilities {
         
         view.layer.masksToBounds = true
         
-
+        
+    }
+    
+    static func addDropShadow(view:UIView, radius:CGFloat, opacity:Float){
+        
+        view.layer.shadowRadius = radius
+        view.layer.shadowOpacity = opacity
         
         
     }
