@@ -17,6 +17,12 @@ class SearchResultTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var gemView: UIImageView!
+    
+    @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var cellImageView: UIImageView!
+    
     var dbRef:DatabaseReference?
     
     
@@ -28,10 +34,19 @@ class SearchResultTableViewCell: UITableViewCell {
         
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
+    
+    func style(){
+        
+        Utilities.addShadowCorners(image: cellImageView, container: containerView, shadowRadius: 5, opacity: 0.3, cornerRadius: 15)
+        
+        Utilities.addDropShadow(view: gemView, radius: 5, opacity: 0.2)
+        
+        
     }
     
     func styleCell(_ documents:[QueryDocumentSnapshot]?, _ index:Int) {
