@@ -239,15 +239,6 @@ class CrushViewController: UIViewController {
         
     }
     
-    func fetchTime() -> String {
-        
-        let currentDate = Date()
-        
-        let since1970 = currentDate.timeIntervalSince1970
-        
-        return String(Int64(since1970 * 1000))
-        
-    }
     
     
     
@@ -411,7 +402,7 @@ extension CrushViewController: UISearchBarDelegate {
         // Make database call according to the searchText
 
         
-        let time = fetchTime()
+        let time = Utilities.fetchTime()
         
         // Only begin fetching results from database if both gemStatus and searchText are not nil
         
@@ -438,6 +429,7 @@ extension CrushViewController: UISearchBarDelegate {
                     // Otherwise, it means this was an old query, do nothing
                     
                     if self.latestFetch == nil || time > self.latestFetch! {
+                        
                         self.latestFetch = time
                         
                         //                    print("Processing Query for \(cleanedText)")

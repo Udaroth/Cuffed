@@ -34,21 +34,36 @@ class SearchResultTableViewCell: UITableViewCell {
         
     }
 
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
     
-    func style(){
-        
+    // style the cell with the document
+    func style(documents:[QueryDocumentSnapshot]?, index:Int){
+        // Add shadow and rounded corners to the cell
         Utilities.addShadowCorners(image: cellImageView, container: containerView, shadowRadius: 5, opacity: 0.3, cornerRadius: 15)
-        
+        // Add drop shadow to the gem
         Utilities.addDropShadow(view: gemView, radius: 5, opacity: 0.2)
+        
+        // Update the name label using the documents retrieved
+        nameLabel.text = documents![index].data()[Con.Database.name] as? String
+        
+        // Grab the url link from the document
+        let urlString = documents![index].data()[Con.Database.profileImage] as? String
+        
+        // Check it is not nil
+        guard urlString != nil else { return }
+        
+        // Use the URL function to turn that string into an url object
+        let url = URL(string: urlString!)
+        
+        // Call the SDWebImage function to set the image
+        profileImageView.sd_setImage(with: url) { (image, error, cacheType, url) in
+            self.profileImageView.image = image
+        }
+        
         
         
     }
     
+    // Legacy style cell function
     func styleCell(_ documents:[QueryDocumentSnapshot]?, _ index:Int) {
         
         guard documents != nil else { return }

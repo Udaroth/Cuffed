@@ -77,7 +77,16 @@ class Con {
         static let documentID = "documentID"
         static let border = "border"
         static let activeEncounters = "activeEncounters"
-    
+        
+        
+        static let fbID = "fbID"
+        static let inID = "inID"
+        static let ttID = "ttID"
+        static let scID = "scID"
+        static let wcID = "wcID"
+        static let ytID = "ytID"
+        
+        static let IDArray = ["fbID", "inID", "ttID", "scID", "wcID", "ytID"]
         
     }
     
@@ -91,7 +100,6 @@ class Con {
         static let instagram = "Instagram"
         
         static let smArray = ["Facebook", "TikTok", "WeChat", "Snapchat", "YouTube", "Instagram"]
-        
         
     }
     

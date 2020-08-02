@@ -618,6 +618,16 @@ class Utilities {
         
     }
     
+    static func fetchTime() -> String {
+        
+        let currentDate = Date()
+        
+        let since1970 = currentDate.timeIntervalSince1970
+        
+        return String(Int64(since1970 * 1000))
+        
+    }
+    
     
     // MARK: Gradient Helpers
     static func calculateGradient(_ colour:Float,_ base:Float)->Float{

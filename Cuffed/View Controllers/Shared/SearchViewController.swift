@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class SearchViewController: UIViewController {
+    
+    // IBOutlet variables
 
     @IBOutlet weak var searchBarView: UIView!
     
@@ -33,6 +36,17 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var wechatButton: UIButton!
     
+    // Other variables
+    
+    // Firestore reference
+    let fsRef = Firestore.firestore()
+    
+    // Variable to check whether we're running the latest query
+    var latestFetch:String?
+    
+    // Document array that stores all query results
+    var documents:[QueryDocumentSnapshot]?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +54,7 @@ class SearchViewController: UIViewController {
         // Do any additional setup after loading the view.
         searchTable.delegate = self
         searchTable.dataSource = self
+        searchBar.delegate = self
         styleInterface()
         
     }
@@ -96,7 +111,13 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        if documents == nil {
+            return 0
+        } else {
+            return documents!.count
+        }
+        
+
          
     }
     
@@ -104,10 +125,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Con.Cells.searchResultCell, for: indexPath) as! SearchResultTableViewCell
         
-        cell.style()
+        cell.style(documents: documents, index: indexPath.row)
         
         cell.selectionStyle = .none
-         
+        
         
         return cell
     }
@@ -115,6 +136,65 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // I think this function handles what happens when a cell is selected 
+        
+    }
+    
+}
+
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    // Function is called whenever the text in the search bar is updated
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        // Store the time of when this text edit occured
+        let time = Utilities.fetchTime()
+        
+        // Grab the text in the search bar and put it all in lowercase
+        let cleanedText = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        
+        // If the cleanedText is not an empty string
+        if cleanedText != "" {
+            
+            // Debugging statement
+            print("Beginning fetch for \(cleanedText)")
+            
+            for item in Con.Firestore.IDArray {
+                
+                print("Checking for \(item)")
+                
+                // Perform firestore query into users for each social media id
+                 fsRef.collection(Con.Firestore.users).whereField(item, arrayContains: cleanedText).getDocuments { (snapshot, error) in
+                     
+                     if let error = error {
+                         // An error has occured
+                         print("Error fetching username documents \(error)")
+                     } else {
+                         
+                         // if latestFetch is nil that means no fetch has occured yet
+                         // if time is later than latestFetch, this is a newer fetch, also continue
+                         // Otherwise, we ignore this query
+                         if self.latestFetch == nil || time > self.latestFetch! {
+                             
+                             // Update latestFetch variable to the current query time
+                             self.latestFetch = time
+                             
+                             // Append the documents found into array
+                            self.documents?.append(contentsOf: snapshot!.documents)
+                            
+                            self.searchTable.reloadData()
+                             
+                         }
+                         
+                     }
+                     
+                 }
+                
+                
+            }
+            
+ 
+        }
         
     }
     
