@@ -44,8 +44,11 @@ class SearchViewController: UIViewController {
     // Variable to check whether we're running the latest query
     var latestFetch:String?
     
-    // Document array that stores all query results
-    var documents:[QueryDocumentSnapshot]?
+    // Document array that stores all table content
+    var documents:[QueryDocumentSnapshot] = []
+    
+//    // Document array used to fetch query results
+//    var standbyDocuments:[QueryDocumentSnapshot] = []
     
     
     override func viewDidLoad() {
@@ -56,6 +59,8 @@ class SearchViewController: UIViewController {
         searchTable.dataSource = self
         searchBar.delegate = self
         styleInterface()
+        	
+        searchBar.becomeFirstResponder()
         
     }
     
@@ -110,12 +115,8 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if documents == nil {
-            return 0
-        } else {
-            return documents!.count
-        }
+    
+        return documents.count
         
 
          
@@ -146,18 +147,24 @@ extension SearchViewController: UISearchBarDelegate {
     
     // Function is called whenever the text in the search bar is updated
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+                
         // Store the time of when this text edit occured
         let time = Utilities.fetchTime()
         
         // Grab the text in the search bar and put it all in lowercase
         let cleanedText = searchText.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         
+        // Counter
+        var counter = 0
+        
         // If the cleanedText is not an empty string
         if cleanedText != "" {
             
+            // Remove all items in the current documents array
+            var standbyDocuments:[QueryDocumentSnapshot] = []
+            
             // Debugging statement
-            print("Beginning fetch for \(cleanedText)")
+            print("Beginning fetch for \(cleanedText) at time \(time)")
             
             for item in Con.Firestore.IDArray {
                 
@@ -174,15 +181,28 @@ extension SearchViewController: UISearchBarDelegate {
                          // if latestFetch is nil that means no fetch has occured yet
                          // if time is later than latestFetch, this is a newer fetch, also continue
                          // Otherwise, we ignore this query
-                         if self.latestFetch == nil || time > self.latestFetch! {
+                         if self.latestFetch == nil || time >= self.latestFetch! {
                              
                              // Update latestFetch variable to the current query time
-                             self.latestFetch = time
-                             
-                             // Append the documents found into array
-                            self.documents?.append(contentsOf: snapshot!.documents)
+                            self.latestFetch = time
                             
-                            self.searchTable.reloadData()
+                            print("Before \(standbyDocuments.count), for \(cleanedText)")
+                             // Append the documents found into the standby array
+                            standbyDocuments.append(contentsOf: snapshot!.documents)
+                            
+                            print("After \(standbyDocuments.count), for \(cleanedText)")
+                            
+                            // Only reload the table if this is the last iteration of the for loop
+                            if counter == 5 {
+                                // Reload table after all appending has occured
+                                self.documents = standbyDocuments
+                                self.searchTable.reloadData()
+                            } else {
+                                counter += 1
+                            }
+
+                            
+                            
                              
                          }
                          
@@ -193,8 +213,17 @@ extension SearchViewController: UISearchBarDelegate {
                 
             }
             
+
  
+        } else {
+            // The text entered was an empty string
+            // Remove all documents and reload the table
+            print("Search bar is empty string at time \(time)")
+            self.latestFetch = time
+            self.documents.removeAll()
+            self.searchTable.reloadData()
         }
+    
         
     }
     
