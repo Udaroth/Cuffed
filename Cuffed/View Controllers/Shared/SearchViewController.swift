@@ -32,7 +32,7 @@ class SearchViewController: UIViewController {
     var latestFetch:String?
     
     // Document array that stores all table content
-    var documents:[QueryDocumentSnapshot] = []
+    var documents:[String:[QueryDocumentSnapshot]] = [:]
     
 //    // Document array used to fetch query results
 //    var standbyDocuments:[QueryDocumentSnapshot] = []
@@ -136,28 +136,28 @@ extension SearchViewController: UISearchBarDelegate {
         // Counter
         var counter = 0
         
-        // Dictionary to store Document Arrays
-        
+        // Create an empty dictionary for queryDocumentSnapshots
+        var documentDict:[String:[QueryDocumentSnapshot]] = [:]
         
         // If the cleanedText is not an empty string
         if cleanedText != "" {
             
             // Remove all items in the current documents array
-            var standbyDocuments:[QueryDocumentSnapshot] = []
+//            var standbyDocuments:[QueryDocumentSnapshot] = []
             
             // Debugging statement
             print("Beginning fetch for \(cleanedText) at time \(time)")
             
             for item in Con.Firestore.IDArray {
-                
                 print("Checking for \(item)")
                 
                 // Perform firestore query into users for each social media id
-                 fsRef.collection(Con.Firestore.users).whereField(item, arrayContains: cleanedText).getDocuments { (snapshot, error) in
+                 fsRef.collection(Con.Firestore.users).whereField(item, isGreaterThanOrEqualTo: cleanedText).getDocuments { (snapshot, error) in
                      
                      if let error = error {
                          // An error has occured
                          print("Error fetching username documents \(error)")
+                        
                      } else {
                          
                          // if latestFetch is nil that means no fetch has occured yet
@@ -168,18 +168,17 @@ extension SearchViewController: UISearchBarDelegate {
                              // Update latestFetch variable to the current query time
                             self.latestFetch = time
                             
-                            print("Before \(standbyDocuments.count), for \(cleanedText)")
-                             // Append the documents found into the standby array
-                            standbyDocuments.append(contentsOf: snapshot!.documents)
-                            
-                            print("After \(standbyDocuments.count), for \(cleanedText)")
-                            
+                             // Set the value of the dictionary with given key, as the array of documents which has matched the criteria.
+                            documentDict[item] = snapshot!.documents
+
                             // Only reload the table if this is the last iteration of the for loop
                             if counter == 5 {
                                 // Reload table after all appending has occured
-                                self.documents = standbyDocuments
+                                self.documents = documentDict
                                 self.searchTable.reloadData()
+                                
                             } else {
+                                // Incremnet the counter for each social media incremented
                                 counter += 1
                             }
 
