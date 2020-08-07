@@ -23,19 +23,6 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchLabel: UILabel!
     
-    // Gem buttons
-    @IBOutlet weak var fbButton: UIButton!
-    
-    @IBOutlet weak var instaButton: UIButton!
-    
-    @IBOutlet weak var snapchatButton: UIButton!
-    
-    @IBOutlet weak var tiktokButton: UIButton!
-    
-    @IBOutlet weak var youtubeButton: UIButton!
-    
-    @IBOutlet weak var wechatButton: UIButton!
-    
     // Other variables
     
     // Firestore reference
@@ -72,15 +59,7 @@ class SearchViewController: UIViewController {
         }
         Utilities.styleSearchBarView(searchBarView)
         
-        // Dropshadow on the gems and the label
-        
-        Utilities.addDropShadow(view: fbButton, radius: 5, opacity: 0.2)
-        Utilities.addDropShadow(view: instaButton, radius: 5, opacity: 0.2)
-        Utilities.addDropShadow(view: snapchatButton, radius: 5, opacity: 0.2)
-        Utilities.addDropShadow(view: wechatButton, radius: 5, opacity: 0.2)
-        Utilities.addDropShadow(view: youtubeButton, radius: 5, opacity: 0.2)
-        Utilities.addDropShadow(view: tiktokButton, radius: 5, opacity: 0.2)
-        Utilities.addDropShadow(view: searchLabel, radius: 5, opacity: 0.2)
+        // 
         
         
         // Corner radius and drop shadow for gray back
@@ -157,6 +136,9 @@ extension SearchViewController: UISearchBarDelegate {
         // Counter
         var counter = 0
         
+        // Dictionary to store Document Arrays
+        
+        
         // If the cleanedText is not an empty string
         if cleanedText != "" {
             
@@ -201,8 +183,6 @@ extension SearchViewController: UISearchBarDelegate {
                                 counter += 1
                             }
 
-                            
-                            
                              
                          }
                          

@@ -615,7 +615,6 @@ class Utilities {
             container.layer.shadowRadius = shadowRadius
         
         
-        
     }
     
     static func fetchTime() -> String {

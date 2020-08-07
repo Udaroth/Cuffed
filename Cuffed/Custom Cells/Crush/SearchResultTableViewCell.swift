@@ -17,6 +17,8 @@ class SearchResultTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     @IBOutlet weak var gemView: UIImageView!
     
     @IBOutlet weak var containerView: UIView!
@@ -40,7 +42,7 @@ class SearchResultTableViewCell: UITableViewCell {
         // Add shadow and rounded corners to the cell
         Utilities.addShadowCorners(image: cellImageView, container: containerView, shadowRadius: 5, opacity: 0.3, cornerRadius: 15)
         // Add drop shadow to the gem
-        Utilities.addDropShadow(view: gemView, radius: 5, opacity: 0.2)
+//        Utilities.addDropShadow(view: gemView, radius: 5, opacity: 0.2)
         
         // Update the name label using the documents retrieved
         nameLabel.text = documents![index].data()[Con.Database.name] as? String
@@ -59,7 +61,8 @@ class SearchResultTableViewCell: UITableViewCell {
             self.profileImageView.image = image
         }
         
-        
+        // Make the profile image circular
+        profileImageView.layer.cornerRadius = profileImageView.frame.width/2
         
     }
     
