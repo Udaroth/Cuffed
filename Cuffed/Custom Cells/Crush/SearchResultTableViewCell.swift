@@ -67,6 +67,9 @@ class SearchResultTableViewCell: UITableViewCell {
         // Update the gem view to match the desired gem
         gemView.image = UIImage(named: results[index].socialMedia!)
         
+        // Grab the username from the document
+        usernameLabel.text = results[index].document!.data()[results[index].socialMedia!] as? String
+        
     }
         
     

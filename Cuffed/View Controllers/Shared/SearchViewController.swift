@@ -154,7 +154,8 @@ extension SearchViewController: UISearchBarDelegate {
                          print("Error fetching username documents \(error)")
                         
                      } else {
-                         
+                        
+                        
                          // if latestFetch is nil that means no fetch has occured yet
                          // if time is later than latestFetch, this is a newer fetch, also continue
                          // Otherwise, we ignore this query
