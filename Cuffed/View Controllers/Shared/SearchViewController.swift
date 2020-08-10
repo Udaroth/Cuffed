@@ -31,11 +31,9 @@ class SearchViewController: UIViewController {
     // Variable to check whether we're running the latest query
     var latestFetch:String?
     
-    // Document array that stores all table content
-    var documents:[String:[QueryDocumentSnapshot]] = [:]
-    
-//    // Document array used to fetch query results
-//    var standbyDocuments:[QueryDocumentSnapshot] = []
+    // An array which holds all the query results
+    var documents:[QueryResult] = []
+
     
     
     override func viewDidLoad() {
@@ -105,7 +103,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: Con.Cells.searchResultCell, for: indexPath) as! SearchResultTableViewCell
         
-        cell.style(documents: documents, index: indexPath.row)
+        cell.style(results: documents, index: indexPath.row)
         
         cell.selectionStyle = .none
         
@@ -137,13 +135,10 @@ extension SearchViewController: UISearchBarDelegate {
         var counter = 0
         
         // Create an empty dictionary for queryDocumentSnapshots
-        var documentDict:[String:[QueryDocumentSnapshot]] = [:]
+        var standbyDocuments:[QueryResult] = []
         
         // If the cleanedText is not an empty string
         if cleanedText != "" {
-            
-            // Remove all items in the current documents array
-//            var standbyDocuments:[QueryDocumentSnapshot] = []
             
             // Debugging statement
             print("Beginning fetch for \(cleanedText) at time \(time)")
@@ -168,13 +163,23 @@ extension SearchViewController: UISearchBarDelegate {
                              // Update latestFetch variable to the current query time
                             self.latestFetch = time
                             
-                             // Set the value of the dictionary with given key, as the array of documents which has matched the criteria.
-                            documentDict[item] = snapshot!.documents
+                            // For each snapshot document result found, we'll turn them into a query result object
+                            for doc in snapshot!.documents {
+                                // Declare the result variable
+                                let result = QueryResult()
+                                // Set the document
+                                result.document = doc
+                                // Set the social media which it belonged in
+                                result.socialMedia = item
+                                // Append it into the back of the standbyDocuments array
+                                standbyDocuments.append(result)
+                            }
+                            
 
                             // Only reload the table if this is the last iteration of the for loop
                             if counter == 5 {
                                 // Reload table after all appending has occured
-                                self.documents = documentDict
+                                self.documents = standbyDocuments
                                 self.searchTable.reloadData()
                                 
                             } else {

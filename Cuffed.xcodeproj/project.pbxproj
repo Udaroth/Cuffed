@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		000B0D6923C8C50200435CC3 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B0D6823C8C50200435CC3 /* EditProfileViewController.swift */; };
 		000C9A9023B5C9DA0084E9A0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000C9A8F23B5C9DA0084E9A0 /* Utilities.swift */; };
+		0010865F24E123C100A65559 /* QueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0010865E24E123C100A65559 /* QueryResult.swift */; };
 		001AF60223A5D0D1008CF880 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AF60123A5D0D1008CF880 /* AppDelegate.swift */; };
 		001AF60423A5D0D1008CF880 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001AF60323A5D0D1008CF880 /* SceneDelegate.swift */; };
 		001AF60923A5D0D1008CF880 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 001AF60723A5D0D1008CF880 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		000B0D6823C8C50200435CC3 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		000C9A8F23B5C9DA0084E9A0 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		0010865E24E123C100A65559 /* QueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryResult.swift; sourceTree = "<group>"; };
 		001AF5FE23A5D0D1008CF880 /* Cuffed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cuffed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		001AF60123A5D0D1008CF880 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		001AF60323A5D0D1008CF880 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				00646D1723A5D74600F3CC94 /* Profile.swift */,
 				004D68B823D7E2BB00BC4A44 /* Messages.swift */,
 				00DEE0B723F913B400D0C790 /* CustomPointAnnotation.swift */,
+				0010865E24E123C100A65559 /* QueryResult.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				00D7082123F7DA5100377163 /* Alert.swift in Sources */,
 				00646D2023A5DBD500F3CC94 /* SettingsOptionsCell.swift in Sources */,
 				006942FC23D93BCC0072A677 /* SentMessageTableViewCell.swift in Sources */,
+				0010865F24E123C100A65559 /* QueryResult.swift in Sources */,
 				00A1385823AC5A92001D718F /* AddNameViewController.swift in Sources */,
 				007DC01A23ADCEB1002311BE /* EditBioViewController.swift in Sources */,
 				005A0F4E23D589BF00C97A8B /* MessageTableViewCell.swift in Sources */,
