@@ -40,9 +40,9 @@ class SearchResultTableViewCell: UITableViewCell {
     // style the cell with the document
     func style(results:[QueryResult], index:Int){
         // Add shadow and rounded corners to the cell
-        Utilities.addShadowCorners(image: cellImageView, container: containerView, shadowRadius: 5, opacity: 0.3, cornerRadius: 15)
+        Utilities.addShadowCorners(image: cellImageView, container: containerView, shadowRadius: 10, opacity: 0.0, cornerRadius: 25)
         // Add drop shadow to the gem
-        Utilities.addDropShadow(view: gemView, radius: 5, opacity: 0.2)
+//        Utilities.addDropShadow(view: gemView, radius: 5, opacity: 0.2)
         
         // Update the name label using the documents retrieved
         nameLabel.text = results[index].document!.data()[Con.Database.name] as? String

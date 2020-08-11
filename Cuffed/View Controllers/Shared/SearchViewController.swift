@@ -23,7 +23,27 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchLabel: UILabel!
     
-    // Other variables
+    @IBOutlet weak var gemStackBGView: UIView!
+    
+    // Gem stack buttons
+    
+    @IBOutlet weak var fbGem: UIButton!
+    
+    @IBOutlet weak var inGem: UIButton!
+    
+    @IBOutlet weak var ttGem: UIButton!
+    
+    @IBOutlet weak var scGem: UIButton!
+    
+    @IBOutlet weak var wcGem: UIButton!
+    
+    @IBOutlet weak var ytGem: UIButton!
+    
+    // Gem Variables to help determine search fitler
+    
+    var searchingAll:Bool?
+    
+    var searchFilter:[String:Bool] = [:]
     
     // Firestore reference
     let fsRef = Firestore.firestore()
@@ -44,6 +64,16 @@ class SearchViewController: UIViewController {
         searchTable.dataSource = self
         searchBar.delegate = self
         styleInterface()
+        
+        searchingAll = true
+        
+        searchFilter[Con.Firestore.fbID] = false
+        searchFilter[Con.Firestore.inID] = false
+        searchFilter[Con.Firestore.ttID] = false
+        searchFilter[Con.Firestore.scID] = false
+        searchFilter[Con.Firestore.wcID] = false
+        searchFilter[Con.Firestore.ytID] = false
+        
         	
         searchBar.becomeFirstResponder()
         
@@ -57,14 +87,25 @@ class SearchViewController: UIViewController {
         }
         Utilities.styleSearchBarView(searchBarView)
         
-        // 
+        // Style gemStack background
+        gemStackBGView.layer.cornerRadius = 10
+        
+        // Add dropshadow to all the gems
+        Utilities.addDropShadow(view: fbGem, radius: 3, opacity: 0.2)
+        Utilities.addDropShadow(view: inGem, radius: 3, opacity: 0.2)
+        Utilities.addDropShadow(view: ttGem, radius: 3, opacity: 0.2)
+        Utilities.addDropShadow(view: scGem, radius: 3, opacity: 0.2)
+        Utilities.addDropShadow(view: wcGem, radius: 3, opacity: 0.2)
+        Utilities.addDropShadow(view: ytGem, radius: 3, opacity: 0.2)
+        
+        
+        
         
         
         // Corner radius and drop shadow for gray back
         Utilities.roundTopCorners(view: lightGrayView, corners: [.topLeft, .topRight], radius: 30)
         
-        
-        
+   
     
     }
     
@@ -85,6 +126,328 @@ class SearchViewController: UIViewController {
         
         
     }
+    
+    
+    // Gem buttons tapped
+    
+    @IBAction func fbTapped(_ sender: UIButton) {
+        // Check status of the gems
+        if !searchFilter[Con.Firestore.fbID]! {
+            // If we are not searching for this gem exclusively
+            // change the current search to be searching for this exclusively
+            fbGem.setImage(UIImage(named: Con.socialMedia.facebook), for: .normal)
+            // Set the rest to false
+            searchingAll = false
+            searchFilter[Con.Firestore.fbID] = true
+            searchFilter[Con.Firestore.inID] = false
+            searchFilter[Con.Firestore.scID] = false
+            searchFilter[Con.Firestore.ttID] = false
+            searchFilter[Con.Firestore.wcID] = false
+            searchFilter[Con.Firestore.ytID] = false
+            // Update the search label accordingly
+            searchLabel.text = "Searching in Facebook"
+            // Also trigger the DidEdit from search bar
+            // Update the gem presentation
+            // Set all gems not fb to placeholder gem
+            if let image = UIImage(named: Con.Images.gemHolder) {
+                ytGem.setImage(image, for: .normal)
+                ttGem.setImage(image, for: .normal)
+                wcGem.setImage(image, for: .normal)
+                scGem.setImage(image, for: .normal)
+                inGem.setImage(image, for: .normal)
+            }
+            
+        } else {
+            // This means that we were already searching fb
+            // And the user wants to go back to searchingAll
+            
+            searchFilter[Con.Firestore.fbID] = false
+            searchingAll = true
+            
+            // Update the label and gem status accordingly
+            
+            // Set all images back to normal
+            fbGem.setImage(UIImage(named: Con.socialMedia.facebook), for: .normal)
+            inGem.setImage(UIImage(named: Con.socialMedia.instagram), for: .normal)
+            ttGem.setImage(UIImage(named: Con.socialMedia.tiktok), for: .normal)
+            scGem.setImage(UIImage(named: Con.socialMedia.snapchat), for: .normal)
+            wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
+            ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
+            
+            searchLabel.text = "Searching all social media"
+            
+        }
+        
+        searchBar(searchBar, textDidChange: searchBar.searchTextField.text!)
+
+    }
+    
+    @IBAction func inTapped(_ sender: UIButton) {
+        
+        // Check status of the gems
+        if !searchFilter[Con.Firestore.inID]! {
+            // If we are not searching for this gem exclusively
+            // change the current search to be searching for this exclusively
+            inGem.setImage(UIImage(named: Con.socialMedia.instagram), for: .normal)
+            // Set the rest to false
+            searchingAll = false
+            searchFilter[Con.Firestore.fbID] = false
+            searchFilter[Con.Firestore.inID] = true
+            searchFilter[Con.Firestore.scID] = false
+            searchFilter[Con.Firestore.ttID] = false
+            searchFilter[Con.Firestore.wcID] = false
+            searchFilter[Con.Firestore.ytID] = false
+            // Update the search label accordingly
+            searchLabel.text = "Searching in Instagram"
+            // Also trigger the DidEdit from search bar
+            // Update the gem presentation
+            // Set all gems not fb to placeholder gem
+            if let image = UIImage(named: Con.Images.gemHolder) {
+                ytGem.setImage(image, for: .normal)
+                ttGem.setImage(image, for: .normal)
+                wcGem.setImage(image, for: .normal)
+                scGem.setImage(image, for: .normal)
+                fbGem.setImage(image, for: .normal)
+            }
+            
+        } else {
+            // This means that we were already searching fb
+            // And the user wants to go back to searchingAll
+            
+            searchFilter[Con.Firestore.inID] = false
+            searchingAll = true
+            
+            // Update the label and gem status accordingly
+            
+            // Set all images back to normal
+            fbGem.setImage(UIImage(named: Con.socialMedia.facebook), for: .normal)
+            inGem.setImage(UIImage(named: Con.socialMedia.instagram), for: .normal)
+            ttGem.setImage(UIImage(named: Con.socialMedia.tiktok), for: .normal)
+            scGem.setImage(UIImage(named: Con.socialMedia.snapchat), for: .normal)
+            wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
+            ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
+            
+            searchLabel.text = "Searching all social media"
+            
+        }
+        
+        searchBar(searchBar, textDidChange: searchBar.searchTextField.text!)
+    }
+    
+    @IBAction func ttTapped(_ sender: UIButton) {
+        
+        // Check status of the gems
+        if !searchFilter[Con.Firestore.ttID]! {
+            // If we are not searching for this gem exclusively
+            // change the current search to be searching for this exclusively
+            ttGem.setImage(UIImage(named: Con.socialMedia.tiktok), for: .normal)
+            // Set the rest to false
+            searchingAll = false
+            searchFilter[Con.Firestore.fbID] = false
+            searchFilter[Con.Firestore.inID] = false
+            searchFilter[Con.Firestore.scID] = false
+            searchFilter[Con.Firestore.ttID] = true
+            searchFilter[Con.Firestore.wcID] = false
+            searchFilter[Con.Firestore.ytID] = false
+            // Update the search label accordingly
+            searchLabel.text = "Searching in TikTok"
+            // Also trigger the DidEdit from search bar
+            // Update the gem presentation
+            // Set all gems not fb to placeholder gem
+            if let image = UIImage(named: Con.Images.gemHolder) {
+                ytGem.setImage(image, for: .normal)
+                inGem.setImage(image, for: .normal)
+                wcGem.setImage(image, for: .normal)
+                scGem.setImage(image, for: .normal)
+                fbGem.setImage(image, for: .normal)
+            }
+            
+        } else {
+            // This means that we were already searching fb
+            // And the user wants to go back to searchingAll
+            
+            searchFilter[Con.Firestore.ttID] = false
+            searchingAll = true
+            
+            // Update the label and gem status accordingly
+            
+            // Set all images back to normal
+            fbGem.setImage(UIImage(named: Con.socialMedia.facebook), for: .normal)
+            inGem.setImage(UIImage(named: Con.socialMedia.instagram), for: .normal)
+            ttGem.setImage(UIImage(named: Con.socialMedia.tiktok), for: .normal)
+            scGem.setImage(UIImage(named: Con.socialMedia.snapchat), for: .normal)
+            wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
+            ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
+            
+            searchLabel.text = "Searching all social media"
+            
+        }
+        
+        searchBar(searchBar, textDidChange: searchBar.searchTextField.text!)
+        
+    }
+    
+    @IBAction func scTapped(_ sender: UIButton) {
+        
+        // Check status of the gems
+        if !searchFilter[Con.Firestore.scID]! {
+            // If we are not searching for this gem exclusively
+            // change the current search to be searching for this exclusively
+            scGem.setImage(UIImage(named: Con.socialMedia.snapchat), for: .normal)
+            // Set the rest to false
+            searchingAll = false
+            searchFilter[Con.Firestore.fbID] = false
+            searchFilter[Con.Firestore.inID] = false
+            searchFilter[Con.Firestore.scID] = true
+            searchFilter[Con.Firestore.ttID] = false
+            searchFilter[Con.Firestore.wcID] = false
+            searchFilter[Con.Firestore.ytID] = false
+            // Update the search label accordingly
+            searchLabel.text = "Searching in Snapchat"
+            // Also trigger the DidEdit from search bar
+            // Update the gem presentation
+            // Set all gems not fb to placeholder gem
+            if let image = UIImage(named: Con.Images.gemHolder) {
+                ytGem.setImage(image, for: .normal)
+                ttGem.setImage(image, for: .normal)
+                wcGem.setImage(image, for: .normal)
+                inGem.setImage(image, for: .normal)
+                fbGem.setImage(image, for: .normal)
+            }
+            
+        } else {
+            // This means that we were already searching fb
+            // And the user wants to go back to searchingAll
+            
+            searchFilter[Con.Firestore.scID] = false
+            searchingAll = true
+            
+            // Update the label and gem status accordingly
+            
+            // Set all images back to normal
+            fbGem.setImage(UIImage(named: Con.socialMedia.facebook), for: .normal)
+            inGem.setImage(UIImage(named: Con.socialMedia.instagram), for: .normal)
+            ttGem.setImage(UIImage(named: Con.socialMedia.tiktok), for: .normal)
+            scGem.setImage(UIImage(named: Con.socialMedia.snapchat), for: .normal)
+            wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
+            ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
+            
+            searchLabel.text = "Searching all social media"
+            
+        }
+        
+        searchBar(searchBar, textDidChange: searchBar.searchTextField.text!)
+        
+        
+    }
+    
+    @IBAction func wcTapped(_ sender: UIButton) {
+        
+        // Check status of the gems
+        if !searchFilter[Con.Firestore.wcID]! {
+            // If we are not searching for this gem exclusively
+            // change the current search to be searching for this exclusively
+            wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
+            // Set the rest to false
+            searchingAll = false
+            searchFilter[Con.Firestore.fbID] = false
+            searchFilter[Con.Firestore.inID] = false
+            searchFilter[Con.Firestore.scID] = false
+            searchFilter[Con.Firestore.ttID] = false
+            searchFilter[Con.Firestore.wcID] = true
+            searchFilter[Con.Firestore.ytID] = false
+            // Update the search label accordingly
+            searchLabel.text = "Searching in WeChat"
+            print("Just updated search label")
+            // Also trigger the DidEdit from search bar
+            // Update the gem presentation
+            // Set all gems not fb to placeholder gem
+            if let image = UIImage(named: Con.Images.gemHolder) {
+                ytGem.setImage(image, for: .normal)
+                ttGem.setImage(image, for: .normal)
+                inGem.setImage(image, for: .normal)
+                scGem.setImage(image, for: .normal)
+                fbGem.setImage(image, for: .normal)
+            }
+            
+        } else {
+            // This means that we were already searching fb
+            // And the user wants to go back to searchingAll
+            
+            searchFilter[Con.Firestore.wcID] = false
+            searchingAll = true
+            
+            // Update the label and gem status accordingly
+            
+            // Set all images back to normal
+            fbGem.setImage(UIImage(named: Con.socialMedia.facebook), for: .normal)
+            inGem.setImage(UIImage(named: Con.socialMedia.instagram), for: .normal)
+            ttGem.setImage(UIImage(named: Con.socialMedia.tiktok), for: .normal)
+            scGem.setImage(UIImage(named: Con.socialMedia.snapchat), for: .normal)
+            wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
+            ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
+            
+            searchLabel.text = "Searching all social media"
+            
+        }
+        
+        searchBar(searchBar, textDidChange: searchBar.searchTextField.text!)
+    }
+    
+    @IBAction func ytTapped(_ sender: UIButton) {
+        
+        // Check status of the gems
+        if !searchFilter[Con.Firestore.ytID]! {
+            // If we are not searching for this gem exclusively
+            // change the current search to be searching for this exclusively
+            ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
+            // Set the rest to false
+            searchingAll = false
+            searchFilter[Con.Firestore.fbID] = false
+            searchFilter[Con.Firestore.inID] = false
+            searchFilter[Con.Firestore.scID] = false
+            searchFilter[Con.Firestore.ttID] = false
+            searchFilter[Con.Firestore.wcID] = false
+            searchFilter[Con.Firestore.ytID] = true
+            // Update the search label accordingly
+            searchLabel.text = "Searching in YouTube"
+            // Also trigger the DidEdit from search bar
+            // Update the gem presentation
+            // Set all gems not fb to placeholder gem
+            if let image = UIImage(named: Con.Images.gemHolder) {
+                inGem.setImage(image, for: .normal)
+                ttGem.setImage(image, for: .normal)
+                wcGem.setImage(image, for: .normal)
+                scGem.setImage(image, for: .normal)
+                fbGem.setImage(image, for: .normal)
+            }
+            
+        } else {
+            // This means that we were already searching fb
+            // And the user wants to go back to searchingAll
+            
+            searchFilter[Con.Firestore.ytID] = false
+            searchingAll = true
+            
+            // Update the label and gem status accordingly
+            
+            // Set all images back to normal
+            fbGem.setImage(UIImage(named: Con.socialMedia.facebook), for: .normal)
+            inGem.setImage(UIImage(named: Con.socialMedia.instagram), for: .normal)
+            ttGem.setImage(UIImage(named: Con.socialMedia.tiktok), for: .normal)
+            scGem.setImage(UIImage(named: Con.socialMedia.snapchat), for: .normal)
+            wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
+            ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
+            
+            searchLabel.text = "Searching all social media"
+            
+        }
+        
+        searchBar(searchBar, textDidChange: searchBar.searchTextField.text!)
+    }
+    
+    
+    
     
 
 }
@@ -143,6 +506,9 @@ extension SearchViewController: UISearchBarDelegate {
             // Debugging statement
             print("Beginning fetch for \(cleanedText) at time \(time)")
             
+            // Update label to show current search query
+            searchLabel.text = "Searching in all social media"
+            
             for item in Con.Firestore.IDArray {
                 print("Checking for \(item)")
                 
@@ -172,8 +538,15 @@ extension SearchViewController: UISearchBarDelegate {
                                 result.document = doc
                                 // Set the social media which it belonged in
                                 result.socialMedia = item
-                                // Append it into the back of the standbyDocuments array
-                                standbyDocuments.append(result)
+                                
+                                // Only append if the current gem / all search is active
+                                if self.searchingAll! || (self.searchFilter[item] == true) {
+                                    
+                                    // Append it into the back of the standbyDocuments array
+                                    standbyDocuments.append(result)
+                                    
+                                    
+                                }
                             }
                             
 
@@ -204,6 +577,7 @@ extension SearchViewController: UISearchBarDelegate {
             // The text entered was an empty string
             // Remove all documents and reload the table
             print("Search bar is empty string at time \(time)")
+            searchLabel.text = "Recent searches"
             self.latestFetch = time
             self.documents.removeAll()
             self.searchTable.reloadData()
