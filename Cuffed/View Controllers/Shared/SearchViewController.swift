@@ -53,6 +53,17 @@ class SearchViewController: UIViewController {
     
     // An array which holds all the query results
     var documents:[QueryResult] = []
+    
+    // String constants used in this ViewController
+    
+    struct localCons {
+        
+        static let all = "Searching all social media"
+        
+        static var mediaDict:[String:String] = [Con.Firestore.fbID:Con.socialMedia.facebook, Con.Firestore.inID:Con.socialMedia.instagram, Con.Firestore.scID:Con.socialMedia.snapchat, Con.Firestore.ttID:Con.socialMedia.tiktok, Con.Firestore.wcID:Con.socialMedia.wechat, Con.Firestore.ytID:Con.socialMedia.youtube]
+        
+        
+    }
 
     
     
@@ -99,14 +110,35 @@ class SearchViewController: UIViewController {
         Utilities.addDropShadow(view: ytGem, radius: 3, opacity: 0.2)
         
         
-        
-        
-        
         // Corner radius and drop shadow for gray back
         Utilities.roundTopCorners(view: lightGrayView, corners: [.topLeft, .topRight], radius: 30)
         
    
     
+    }
+    
+    // Utilitie Function
+    
+    // Check the Boolean variables and update the search label accordingly
+    func updateLabel(){
+        
+        // If we're currently searching all, then update the label
+        if searchingAll! {
+            searchLabel.text = localCons.all
+        } else {
+            // Otherwise, check through each item in the dictionary
+            for media in searchFilter {
+                // If we find that any of them are set to true, then
+                if media.value {
+                    // update the search label to the corresponding social media
+                    searchLabel.text = "Searching in \(localCons.mediaDict[media.key] ?? "")"
+                    break
+                }
+                
+            }
+            
+        }
+        
     }
     
     
@@ -174,7 +206,7 @@ class SearchViewController: UIViewController {
             wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
             ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
             
-            searchLabel.text = "Searching all social media"
+            searchLabel.text = localCons.all
             
         }
         
@@ -227,7 +259,7 @@ class SearchViewController: UIViewController {
             wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
             ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
             
-            searchLabel.text = "Searching all social media"
+            searchLabel.text = localCons.all
             
         }
         
@@ -279,7 +311,7 @@ class SearchViewController: UIViewController {
             wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
             ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
             
-            searchLabel.text = "Searching all social media"
+            searchLabel.text = localCons.all
             
         }
         
@@ -332,7 +364,7 @@ class SearchViewController: UIViewController {
             wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
             ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
             
-            searchLabel.text = "Searching all social media"
+            searchLabel.text = localCons.all
             
         }
         
@@ -387,7 +419,7 @@ class SearchViewController: UIViewController {
             wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
             ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
             
-            searchLabel.text = "Searching all social media"
+            searchLabel.text = localCons.all
             
         }
         
@@ -439,7 +471,7 @@ class SearchViewController: UIViewController {
             wcGem.setImage(UIImage(named: Con.socialMedia.wechat), for: .normal)
             ytGem.setImage(UIImage(named: Con.socialMedia.youtube), for: .normal)
             
-            searchLabel.text = "Searching all social media"
+            searchLabel.text = localCons.all
             
         }
         
@@ -468,7 +500,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.style(results: documents, index: indexPath.row)
         
-        cell.selectionStyle = .none
+//        cell.selectionStyle = .default
         
         
         return cell
@@ -476,7 +508,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // I think this function handles what happens when a cell is selected 
+        // I think this function handles what happens when a cell is selected
+        
+        print("Cell selection detected at index \(indexPath.row)")
+        
+        // We should perform a segue to the detailCard view controller with the appropraite UID
         
     }
     
@@ -507,7 +543,7 @@ extension SearchViewController: UISearchBarDelegate {
             print("Beginning fetch for \(cleanedText) at time \(time)")
             
             // Update label to show current search query
-            searchLabel.text = "Searching in all social media"
+            updateLabel()
             
             for item in Con.Firestore.IDArray {
                 print("Checking for \(item)")

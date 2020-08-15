@@ -71,6 +71,9 @@ class SearchResultTableViewCell: UITableViewCell {
         usernameLabel.text = results[index].document!.data()[results[index].socialMedia!] as? String
         
     }
+    
+    
+    
         
     
     
