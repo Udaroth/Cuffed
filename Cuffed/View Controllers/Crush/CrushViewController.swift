@@ -31,12 +31,8 @@ class CrushViewController: UIViewController {
     @IBOutlet weak var crushNameLabel: UILabel!
     
     @IBOutlet weak var talkCollectionView: UICollectionView!
-    
-    // Search related components
-    
-    @IBOutlet weak var searchBarView: UIView!
-    
-    @IBOutlet weak var searchBar: UISearchBar!
+
+    @IBOutlet weak var searchButton: UIButton!
     
     // Search VC
 
@@ -73,6 +69,8 @@ class CrushViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Deck"
 
         // Do any additional setup after loading the view.
         talkCollectionView.delegate = self
@@ -83,8 +81,6 @@ class CrushViewController: UIViewController {
         searchVC = storyboard?.instantiateViewController(identifier: Con.Storyboard.searchVC) as? SearchViewController
         
         
-        
-        searchBar.delegate = self
         
         styleInterface()
         fetchCrushTuneStatus()
@@ -117,26 +113,27 @@ class CrushViewController: UIViewController {
         // Corner Edge for gray sheet
         Utilities.roundTopCorners(view: lightGrayBackdropView, corners: [.topLeft, .topRight], radius: 30)
         
-        styleSearchBar()
-        
-        
-    }
-    
-    func styleSearchBar(){
-    
-
-        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
-            
-            textfield.backgroundColor = UIColor.white
-          
-        }
-        
-        
-        Utilities.styleSearchBarView(searchBarView)
+        searchButton.layer.cornerRadius = 15
         
         
         
     }
+    
+//    func styleSearchBar(){
+//
+//
+//        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+//
+//            textfield.backgroundColor = UIColor.white
+//
+//        }
+//
+//
+//        Utilities.styleSearchBarView(searchBarView)
+//
+//
+//
+//    }
     
     
     func setProfileImage(){
@@ -248,7 +245,7 @@ class CrushViewController: UIViewController {
         // For the time being, the only reaction is to show search bar
         if self.crush == nil || self.crush == "" {
             
-            searchBarTextDidBeginEditing(searchBar)
+            //searchBarTextDidBeginEditing(searchBar)
             
         } else {
             
@@ -333,7 +330,7 @@ extension CrushViewController: UICollectionViewDelegate, UICollectionViewDataSou
             
             //MARK: Seems like the code isn't entering this bracket
             // Might need to check whether we are initialising the cardUID to nil for each cell
-            searchBarTextDidBeginEditing(searchBar)
+            //searchBarTextDidBeginEditing(searchBar)
             
         } else {
             
@@ -556,7 +553,7 @@ extension CrushViewController: ProfileCellProtocols {
 //            self.gradientEscapeButton.alpha = 0
 //            self.detailCardTableView.alpha = 0
             // resign search bar as first responder
-            self.searchBar.resignFirstResponder()
+            //self.searchBar.resignFirstResponder()
             // hide the gem stack labels
 //            self.stackAndLabelView.alpha = 0
             

@@ -221,6 +221,7 @@ class Con {
         static let editProfileSeg = "editProfileSeg"
         static let toDetailMessages = "toDetailMessages"
         static let toFBCustomizeCard = "toFBCustomizeCard"
+        static let searchToCard = "searchToCardSeg"
     }
     
     struct Account {

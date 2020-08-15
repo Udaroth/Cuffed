@@ -69,6 +69,8 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Search"
 
         // Do any additional setup after loading the view.
         searchTable.delegate = self
@@ -87,6 +89,27 @@ class SearchViewController: UIViewController {
         
         	
         searchBar.becomeFirstResponder()
+        
+    }
+    
+    // Prepare for any seguing that happens
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // We need to give the next ViewController the UID of the user which we've just selected
+        
+        let indexPath = searchTable.indexPathForSelectedRow
+        
+        // Guard statement
+        guard indexPath != nil else { return }
+        
+        // Store the tapped user id into cardUID
+        let cardUID = (searchTable.cellForRow(at: indexPath!) as! SearchResultTableViewCell).UID
+        
+        // Get a reference to the detail view controller
+        let cardVC = segue.destination as! DetailCardViewController
+        
+        // Update this card UID into the new controller
+        cardVC.cardUID = cardUID
         
     }
     
@@ -513,8 +536,12 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         print("Cell selection detected at index \(indexPath.row)")
         
         // We should perform a segue to the detailCard view controller with the appropraite UID
+        performSegue(withIdentifier: Con.Segue.searchToCard, sender: self)
+
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
         
     }
+    
     
 }
 

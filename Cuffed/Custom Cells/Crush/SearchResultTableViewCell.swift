@@ -27,6 +27,8 @@ class SearchResultTableViewCell: UITableViewCell {
     
     var dbRef:DatabaseReference?
     
+    var UID:String?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -69,6 +71,9 @@ class SearchResultTableViewCell: UITableViewCell {
         
         // Grab the username from the document
         usernameLabel.text = results[index].document!.data()[results[index].socialMedia!] as? String
+        
+        // Grab the UID and store it into this cell class
+        self.UID = results[index].document!.documentID
         
     }
     
