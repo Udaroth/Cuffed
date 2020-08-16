@@ -71,16 +71,18 @@ class Animations {
 //        }, completion: nil)
         
         UIView.animate(withDuration: 0.1) {
-            button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }
         
     }
     
     static func animateUnhighlight(button:UIView){
         
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
             button.transform = CGAffineTransform(scaleX: 1, y: 1)
         }, completion: nil)
+        
+
         
     }
     

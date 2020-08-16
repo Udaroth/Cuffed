@@ -18,25 +18,27 @@ class DetailCardViewController: UIViewController {
     
     let dbRef = Database.database().reference()
     
-    @IBOutlet weak var topNameLabel: UILabel!
+    // IBOutlets
     
-    @IBOutlet weak var navigationView: UIView!
+    @IBOutlet weak var whiteBackDropView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     
 // Button Outlets
-    @IBOutlet weak var ykcButton: UIButton!
-    @IBOutlet weak var crushButton: UIButton!
-    @IBOutlet weak var followButton: UIButton!
-    @IBOutlet weak var reportButton: UIButton!
     
-    @IBOutlet weak var blockButton: UIButton!
-    @IBOutlet weak var hideButton: UIButton!
+    @IBOutlet weak var crushButton: UIButton!
+    
+    @IBOutlet weak var followButton: UIButton!
+
     @IBOutlet weak var dmButton: UIButton!
     
-// Button View Outlets
+    @IBOutlet weak var tuneButton: UIButton!
     
-    @IBOutlet weak var ykcView: UIView!
+    @IBOutlet weak var flipbutton: UIButton!
+    
+    @IBOutlet weak var otherButton: UIButton!
+    // Button View Outlets
+    
     
     @IBOutlet weak var crushView: UIView!
     
@@ -44,16 +46,13 @@ class DetailCardViewController: UIViewController {
     
     @IBOutlet weak var dmView: UIView!
     
-    @IBOutlet weak var hideView: UIView!
+    @IBOutlet weak var tuneView: UIView!
     
-    @IBOutlet weak var blockView: UIView!
+    @IBOutlet weak var flipView: UIView!
     
-    @IBOutlet weak var reportView: UIView!
-    
-    
+    @IBOutlet weak var otherView: UIView!
     // Button Label Outlets
     
-    @IBOutlet weak var ykcLabel: UILabel!
     
     @IBOutlet weak var crushLabel: UILabel!
     
@@ -70,9 +69,11 @@ class DetailCardViewController: UIViewController {
         
         styleInterface()
         
-        setupGesture()
+//        setupGesture()
         
         fetchStatus()
+        
+        title = "Card"
         
         
         
@@ -119,19 +120,19 @@ class DetailCardViewController: UIViewController {
         
             if ykcArray!.contains(self.cardUID!){
                 
-                UIView.animate(withDuration: 0.2) {
-                    self.ykcButton.alpha = 0.5
-                    self.inYKC = true;
-//                    self.ykcLabel.text = "Remove from  You kinda cute ;)"
-                }
+//                UIView.animate(withDuration: 0.2) {
+//                    self.ykcButton.alpha = 0.5
+//                    self.inYKC = true;
+////                    self.ykcLabel.text = "Remove from  You kinda cute ;)"
+//                }
 
                 
             } else {
-                UIView.animate(withDuration: 0.2) {
-                    self.ykcButton.alpha = 1
-                    self.inYKC = false;
-                    self.ykcLabel.text = "You kinda cute ;)"
-                }
+//                UIView.animate(withDuration: 0.2) {
+//                    self.ykcButton.alpha = 1
+//                    self.inYKC = false;
+//                    self.ykcLabel.text = "You kinda cute ;)"
+//                }
 
             }
         })
@@ -140,59 +141,63 @@ class DetailCardViewController: UIViewController {
         
     }
     
-    func setupGesture(){
-        
-        // Add Gesture recogniser
-        let panGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction(_:)))
-        
-        panGestureRecognizer.edges = .left
-        
-        self.view.addGestureRecognizer(panGestureRecognizer)
-        
-    }
+//    func setupGesture(){
+//
+//        // Add Gesture recogniser
+//        let panGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction(_:)))
+//
+//        panGestureRecognizer.edges = .left
+//
+//        self.view.addGestureRecognizer(panGestureRecognizer)
+//
+//    }
     
-    @objc func panGestureRecognizerAction(_ gesture: UIScreenEdgePanGestureRecognizer) {
-        
-        let translation = gesture.translation(in: view)
-        
-        view.frame.origin.x = translation.x
-        
-        if gesture.state == .ended {
-            
-            let velocity = gesture.velocity(in: view).x
-            let offset = translation.x
-            
-            
-            if velocity >= 1500 || offset > 200 {
-                
-                // If the user scrolled fast or past a certain point we want to go back to previous view controller
-                                    
-                UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                    
-                    self.view.frame.origin.x = 400
-                    
-                    
-                }) { (Bool) in
-                    self.dismiss(animated: false, completion: nil)
-                }
-
-            } else {
-                
-                // We return the screen edge to its original position
-                UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                    self.view.frame.origin.x = 0
-                }, completion: nil)
-
-                
-            }
-            
-        }
-        
-    }
+//    @objc func panGestureRecognizerAction(_ gesture: UIScreenEdgePanGestureRecognizer) {
+//
+//        let translation = gesture.translation(in: view)
+//
+//        view.frame.origin.x = translation.x
+//
+//        if gesture.state == .ended {
+//
+//            let velocity = gesture.velocity(in: view).x
+//            let offset = translation.x
+//
+//
+//            if velocity >= 1500 || offset > 200 {
+//
+//                // If the user scrolled fast or past a certain point we want to go back to previous view controller
+//
+//                UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
+//
+//                    self.view.frame.origin.x = 400
+//
+//
+//                }) { (Bool) in
+//                    self.dismiss(animated: false, completion: nil)
+//                }
+//
+//            } else {
+//
+//                // We return the screen edge to its original position
+//                UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
+//                    self.view.frame.origin.x = 0
+//                }, completion: nil)
+//
+//
+//            }
+//
+//        }
+//
+//    }
     
     
     
     func styleInterface() {
+        
+        // Corner Radius and Dropshadow for white backdrop
+        
+        Utilities.roundTopCorners(view: whiteBackDropView, corners: [.topLeft, .topRight], radius: 30)
         
         // Database call to fetch user's name
         dbRef.child(Con.Database.users).child(cardUID!).observe(.value) { (snapshot) in
@@ -202,58 +207,41 @@ class DetailCardViewController: UIViewController {
             guard profileDict != nil else { return }
             
             // Fetch basic data here
-            let name = profileDict![Con.Database.name] as? String
-            self.topNameLabel.text = name! + "'s Card"
+//            let name = profileDict![Con.Database.name] as? String
             
         }
         
-           
 
-                Utilities.styleCardBackButton(ykcButton, Con.cardBackButtons.ykc.colourTop, Con.cardBackButtons.ykc.colourBottom)
-        
-                Utilities.styleCardBackButton(crushButton, Con.cardBackButtons.crush.colourTop, Con.cardBackButtons.crush.colourBottom)
-        
-                Utilities.styleCardBackButton(dmButton, Con.cardBackButtons.dm.colourTop, Con.cardBackButtons.dm.colourBottom)
-        
-                Utilities.styleCardBackButton(followButton, Con.cardBackButtons.follow.colourTop, Con.cardBackButtons.follow.colourBottom)
-        
-                Utilities.styleCardBackButton(hideButton, Con.cardBackButtons.hide.colourTop, Con.cardBackButtons.hide.colourBottom)
-        
-                Utilities.styleCardBackButton(blockButton, Con.cardBackButtons.block.colourTop, Con.cardBackButtons.block.colourBottom)
-        
-                Utilities.styleCardBackButton(reportButton, Con.cardBackButtons.report.colourTop, Con.cardBackButtons.report.colourBottom)
+        crushView.layer.cornerRadius = 15
+        tuneView.layer.cornerRadius = 15
+        followView.layer.cornerRadius = 15
+        dmView.layer.cornerRadius = 15
+        flipView.layer.cornerRadius = 15
+        otherView.layer.cornerRadius = 15
         
         
-        
-        navigationView.layer.cornerRadius = 20
+//                Utilities.styleCardBackButton(crushButton, Con.cardBackButtons.crush.colourTop, Con.cardBackButtons.crush.colourBottom)
+//
+//                Utilities.styleCardBackButton(dmButton, Con.cardBackButtons.dm.colourTop, Con.cardBackButtons.dm.colourBottom)
+//
+//                Utilities.styleCardBackButton(followButton, Con.cardBackButtons.follow.colourTop, Con.cardBackButtons.follow.colourBottom)
+//
+    
            
         
     }
     
-    @IBAction func backTapped(_ sender: UIButton) {
-        
-        
-        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
-            
-            self.view.frame.origin.x = 400
-            
-            
-        }) { (Bool) in
-            self.dismiss(animated: false, completion: nil)
-        }
 
-        
-        
-    }
     
     // MARK: Button animations and handling
     
-    @IBAction func ykcHighlighted(_ sender: UIButton) {
-        Animations.animateHighlight(button: ykcView)
-    }
     
     @IBAction func crushHighlighhted(_ sender: UIButton) {
         Animations.animateHighlight(button: crushView)
+    }
+    
+    @IBAction func tuneHighlighted(_ sender: UIButton) {
+        Animations.animateHighlight(button: tuneView)
     }
     
     @IBAction func followHighlighted(_ sender: UIButton) {
@@ -264,27 +252,22 @@ class DetailCardViewController: UIViewController {
         Animations.animateHighlight(button: dmView)
     }
     
-    @IBAction func hideHighlighted(_ sender: UIButton) {
-        Animations.animateHighlight(button: hideView)
+    @IBAction func flipHighlighted(_ sender: UIButton) {
+        Animations.animateHighlight(button: flipView)
     }
     
-    @IBAction func blockHighlighted(_ sender: UIButton) {
-        Animations.animateHighlight(button: blockView)
-    }
-    
-    @IBAction func reportHighlighted(_ sender: UIButton) {
-        Animations.animateHighlight(button: reportView)
+    @IBAction func otherHighlighted(_ sender: UIButton) {
+        Animations.animateHighlight(button: otherView)
     }
     
     // Handle touch cancel
     
-    @IBAction func ykcExit(_ sender: UIButton) {
-        // Animate unhighlight and do nothing
-        Animations.animateUnhighlight(button: ykcView)
-    }
-    
     @IBAction func crushExit(_ sender: UIButton) {
         Animations.animateUnhighlight(button: crushView)
+    }
+    
+    @IBAction func tuneExit(_ sender: UIButton) {
+        Animations.animateUnhighlight(button: tuneView)
     }
     
     @IBAction func followExit(_ sender: UIButton) {
@@ -295,33 +278,20 @@ class DetailCardViewController: UIViewController {
         Animations.animateUnhighlight(button: dmView)
     }
     
-    @IBAction func hideExit(_ sender: UIButton) {
-        Animations.animateUnhighlight(button: hideView)
-    }
-    @IBAction func blockExit(_ sender: UIButton) {
-        Animations.animateUnhighlight(button: blockView)
+    @IBAction func flipExit(_ sender: UIButton) {
+        Animations.animateUnhighlight(button: flipView)
     }
     
-    @IBAction func reportExit(_ sender: UIButton) {
-        Animations.animateUnhighlight(button: reportView)
+    @IBAction func otherExit(_ sender: UIButton) {
+        Animations.animateUnhighlight(button: otherView)
     }
+    
+    
+    
+
     
     // Buttons tapped and selected
-    
-    @IBAction func ykcTapped(_ sender: UIButton) {
-        
-        Animations.animateUnhighlight(button: ykcView)
-        
-        if inYKC {
-            
-            handleRemoveYKC()
-            
-        } else {
-            handleYKC()
-        }
 
-         
-    }
     
     @IBAction func crushTapped(_ sender: UIButton) {
         
@@ -335,6 +305,10 @@ class DetailCardViewController: UIViewController {
 
     }
     
+    @IBAction func tuneTapped(_ sender: UIButton) {
+        Animations.animateUnhighlight(button: tuneView)
+    }
+    
     @IBAction func followTapped(_ sender: UIButton) {
         Animations.animateUnhighlight(button: followView)
     }
@@ -343,17 +317,16 @@ class DetailCardViewController: UIViewController {
         Animations.animateUnhighlight(button: dmView)
     }
     
-    @IBAction func hideTapped(_ sender: UIButton) {
-        Animations.animateUnhighlight(button: hideView)
+    @IBAction func flipTapped(_ sender: UIButton) {
+        Animations.animateUnhighlight(button: flipView)
     }
     
-    @IBAction func blockTapped(_ sender: UIButton) {
-        Animations.animateUnhighlight(button: blockView)
+    @IBAction func otherTapped(_ sender: UIButton) {
+        Animations.animateUnhighlight(button: otherView)
     }
     
-    @IBAction func reportTapped(_ sender: UIButton) {
-        Animations.animateUnhighlight(button: reportView)
-    }
+
+    
     
     
     
