@@ -19,13 +19,6 @@ class Con {
         
     }
     
-    struct buttonNames {
-        static let uncrush = "Uncrush"
-        static let crush = "Crush"
-        static let tune = "Tune"
-        static let untune = "Untune"
-    }
-    
     
     
     struct Settings {
@@ -106,6 +99,12 @@ class Con {
     struct Images{
         
         static let gemHolder = "Gemholders"
+        static let crushNormal = "Crush"
+        static let crushWhite = "Crush_white"
+        static let tuneNormal = "Tune"
+        static let tuneWhite = "Tune_white"
+        static let follow = "Follow"
+        static let unfollow = "Unfollow"
     }
     
     struct Colors {

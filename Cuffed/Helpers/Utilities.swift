@@ -512,13 +512,13 @@ class Utilities {
     
 
     
-    static func styleCardBackButton(_ button:UIButton, _ colourTop:CGColor,_ colourBottom:CGColor) {
+    static func styleCardBackButton(_ button:UIButton, _ colourTop:CGColor,_ colourBottom:CGColor) -> CALayer {
             
     //        button.layer.sublayers?.forEach {$0.removeFromSuperlayer() }
             
             button.layer.borderWidth = 0
             
-            button.layer.cornerRadius = button.frame.size.height/5
+            button.layer.cornerRadius = 15
             button.tintColor = UIColor.white
 //            button.setTitleColor(.white, for: .normal)
             
@@ -538,6 +538,8 @@ class Utilities {
             gradientLayer.shouldRasterize = true
 
             button.layer.addSublayer(gradientLayer)
+        
+            return gradientLayer
             
             
         }

@@ -3061,7 +3061,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3od-gh-h3k">
-                                <rect key="frame" x="0.0" y="140" width="414" height="911"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="960"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVK-FG-C6F" userLabel="Content View (White/Gray Background)">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="893.5"/>
@@ -3716,7 +3716,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.45490196078431372" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3od-gh-h3k" firstAttribute="bottom" secondItem="JaI-K3-qDV" secondAttribute="bottom" constant="34" id="HRS-wZ-t7G"/>
+                            <constraint firstItem="3od-gh-h3k" firstAttribute="bottom" secondItem="Q00-r2-Cs2" secondAttribute="bottom" id="HRS-wZ-t7G"/>
                             <constraint firstItem="3od-gh-h3k" firstAttribute="leading" secondItem="JaI-K3-qDV" secondAttribute="leading" id="HcP-mb-5L6"/>
                             <constraint firstItem="JaI-K3-qDV" firstAttribute="trailing" secondItem="3od-gh-h3k" secondAttribute="trailing" id="Ual-CQ-MQb"/>
                             <constraint firstItem="3od-gh-h3k" firstAttribute="top" secondItem="JaI-K3-qDV" secondAttribute="top" id="pUI-bK-R8T"/>
@@ -3727,6 +3727,7 @@
                     <size key="freeformSize" width="414" height="1100"/>
                     <connections>
                         <outlet property="crushButton" destination="Zk9-cL-sk5" id="FW9-qM-3Wj"/>
+                        <outlet property="crushImage" destination="ucW-pJ-aHD" id="HZH-BZ-lAn"/>
                         <outlet property="crushLabel" destination="X0j-yN-hHQ" id="PRo-tH-Itp"/>
                         <outlet property="crushView" destination="JT3-KA-Ltt" id="mLv-8K-hhh"/>
                         <outlet property="dmButton" destination="PIn-PV-Bsn" id="Mf0-La-uLh"/>
@@ -3734,11 +3735,16 @@
                         <outlet property="flipView" destination="bkZ-Ug-kWh" id="Xrb-Ec-CWi"/>
                         <outlet property="flipbutton" destination="o3S-YW-e8R" id="bgu-Da-p6e"/>
                         <outlet property="followButton" destination="jRt-hz-wX3" id="zra-UQ-3b7"/>
+                        <outlet property="followImage" destination="fk5-TS-DlG" id="i7F-HW-xU5"/>
+                        <outlet property="followLabel" destination="GfN-DM-Yii" id="Z1W-Rb-63Z"/>
                         <outlet property="followView" destination="UoB-MB-JlV" id="UEc-Ar-Shu"/>
                         <outlet property="otherButton" destination="IY7-ZI-Oqv" id="zeS-vd-EHz"/>
                         <outlet property="otherView" destination="AZy-gc-rqd" id="2tm-Om-oHW"/>
+                        <outlet property="scrollView" destination="3od-gh-h3k" id="8Eq-Mu-fGS"/>
                         <outlet property="tableView" destination="YBH-Rd-ToN" id="3kR-uG-fkR"/>
                         <outlet property="tuneButton" destination="VFf-lk-vOp" id="dZM-CJ-ohs"/>
+                        <outlet property="tuneImage" destination="QRJ-dm-xgZ" id="qBq-oZ-7EP"/>
+                        <outlet property="tuneLabel" destination="Lyy-Rw-dOv" id="Q8V-cT-pn6"/>
                         <outlet property="tuneView" destination="LfO-sU-2o3" id="iRn-Lg-T5S"/>
                         <outlet property="whiteBackDropView" destination="RVK-FG-C6F" id="EbT-Yj-iWg"/>
                     </connections>
@@ -3996,9 +4002,11 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>

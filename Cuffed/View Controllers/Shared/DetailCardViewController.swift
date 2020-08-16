@@ -20,6 +20,8 @@ class DetailCardViewController: UIViewController {
     
     // IBOutlets
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var whiteBackDropView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
@@ -51,14 +53,29 @@ class DetailCardViewController: UIViewController {
     @IBOutlet weak var flipView: UIView!
     
     @IBOutlet weak var otherView: UIView!
+    
     // Button Label Outlets
-    
-    
     @IBOutlet weak var crushLabel: UILabel!
+    
+    @IBOutlet weak var tuneLabel: UILabel!
+    
+    @IBOutlet weak var followLabel: UILabel!
+    
+    // Button Image Outlets
+    
+    @IBOutlet weak var crushImage: UIImageView!
+    
+    @IBOutlet weak var tuneImage: UIImageView!
+    
+    @IBOutlet weak var followImage: UIImageView!
     
     // Static Variables
     var isCrush = false;
-    var inYKC = false;
+    var inTune = false;
+    
+    // Sublayer references
+    var crushSublayer:CALayer?
+    var tuneSublayer:CALayer?
     
     
     override func viewDidLoad() {
@@ -74,6 +91,8 @@ class DetailCardViewController: UIViewController {
         fetchStatus()
         
         title = "Card"
+        
+        scrollView.delegate = self
         
         
         
@@ -99,40 +118,70 @@ class DetailCardViewController: UIViewController {
             
             if crush == self.cardUID {
                 UIView.animate(withDuration: 0.2) {
-                    self.crushButton.alpha = 0.5
-                    self.isCrush = true;
-//                    self.crushLabel.text = "Uncrush"
+                    // This card does in fact represent the user's crush
+                    self.isCrush = true
+                    // Make UI changes to Crush Button
+                    self.crushSublayer = Utilities.styleCardBackButton(self.crushButton, Con.cardBackButtons.crush.colourTop, Con.cardBackButtons.crush.colourBottom)
+                    // Set the text colour to white
+                    self.crushLabel.textColor = .white
+                    // Change the image to the white counter part
+                    self.crushImage.image = UIImage(named: Con.Images.crushWhite)
                 }
 
                 
             } else {
                 UIView.animate(withDuration: 0.2) {
-                    self.crushButton.alpha = 1
+                    // This card does not represent the user's crush
                     self.isCrush = false
-                    self.crushLabel.text = "Crush"
+                    // Update UI
+                    _ = self.crushButton.layer.sublayers?.filter{ $0 is CAGradientLayer }.map{ $0.removeFromSuperlayer()}
+                    // Set the text colour back to pink
+//                    self.crushLabel.textColor = UIColor(red: CGFloat(237/255.0), green: CGFloat(107/255.0), blue: CGFloat(111/255.0), alpha: 1)
+                    self.crushLabel.textColor = nil
+                    // Change the image back to original one
+                    self.crushImage.image = UIImage(named: Con.Images.crushNormal)
+                    
                 }
 
             }
             
-            let ykcArray = snapshot!.data()![Con.Firestore.tune] as? Array<String>
+            let tuneArray = snapshot!.data()![Con.Firestore.tune] as? Array<String>
             
-            guard ykcArray != nil else { return }
+            guard tuneArray != nil else { return }
         
-            if ykcArray!.contains(self.cardUID!){
+            if tuneArray!.contains(self.cardUID!){
                 
-//                UIView.animate(withDuration: 0.2) {
-//                    self.ykcButton.alpha = 0.5
-//                    self.inYKC = true;
-////                    self.ykcLabel.text = "Remove from  You kinda cute ;)"
-//                }
+                UIView.animate(withDuration: 0.2) {
+                    // This card is part of the tune ist
+                    self.inTune = true
+                    // Make UI changes to Crush Button
+                    self.tuneSublayer = Utilities.styleCardBackButton(self.tuneButton, Con.cardBackButtons.ykc.colourTop, Con.cardBackButtons.ykc.colourBottom)
+                    // Set the text colour to white
+                    self.tuneLabel.textColor = .white
+                    // Change the image to the white counter part
+                    self.tuneImage.image = UIImage(named: Con.Images.tuneWhite)
+                    
+                    
+                }
 
                 
             } else {
-//                UIView.animate(withDuration: 0.2) {
-//                    self.ykcButton.alpha = 1
-//                    self.inYKC = false;
-//                    self.ykcLabel.text = "You kinda cute ;)"
-//                }
+                // This user was not found in the tune array
+                UIView.animate(withDuration: 0.2) {
+                    
+                    self.inTune = false
+                    
+                    // Update UI
+//                    self.tuneSublayer?.removeFromSuperlayer()
+                    _ = self.tuneButton.layer.sublayers?.filter{ $0 is CAGradientLayer }.map{ $0.removeFromSuperlayer()}
+                    // Set the text colour back to pink
+
+                    self.tuneLabel.textColor = nil
+                    
+                    // Change the image back to original one
+                    self.tuneImage.image = UIImage(named: Con.Images.tuneNormal)
+
+                }
 
             }
         })
@@ -197,7 +246,8 @@ class DetailCardViewController: UIViewController {
         
         // Corner Radius and Dropshadow for white backdrop
         
-        Utilities.roundTopCorners(view: whiteBackDropView, corners: [.topLeft, .topRight], radius: 30)
+//        Utilities.roundTopCorners(view: whiteBackDropView, corners: [.topLeft, .topRight], radius: 30)
+        whiteBackDropView.layer.cornerRadius = 30
         
         // Database call to fetch user's name
         dbRef.child(Con.Database.users).child(cardUID!).observe(.value) { (snapshot) in
@@ -307,6 +357,12 @@ class DetailCardViewController: UIViewController {
     
     @IBAction func tuneTapped(_ sender: UIButton) {
         Animations.animateUnhighlight(button: tuneView)
+        
+        if inTune {
+            handleRemoveYKC()
+        } else {
+            handleYKC()
+        }
     }
     
     @IBAction func followTapped(_ sender: UIButton) {
@@ -641,3 +697,18 @@ extension DetailCardViewController {
     
     
 }
+
+
+//extension DetailCardViewController: UIScrollViewDelegate {
+//
+//    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+//       if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+//          navigationController?.setNavigationBarHidden(true, animated: true)
+//
+//       } else {
+//          navigationController?.setNavigationBarHidden(false, animated: true)
+//       }
+//    }
+//
+//
+//}
