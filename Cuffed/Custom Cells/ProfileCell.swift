@@ -27,7 +27,11 @@ class ProfileCell: UITableViewCell {
     var profileToDisplay = Profile()
     
     // Views
-
+    
+    @IBOutlet weak var frontContainerView: UIView!
+    
+    @IBOutlet weak var backContainerView: UIView!
+    
     @IBOutlet weak var cardFrontView: UIView!
     
     @IBOutlet weak var cardBackView: UIView!
@@ -41,6 +45,11 @@ class ProfileCell: UITableViewCell {
     @IBOutlet weak var bioFront: UILabel!
     
     @IBOutlet weak var lightImageView: UIImageView!
+    
+    @IBOutlet weak var bottomWhiteTabView: UIView!
+    
+    @IBOutlet weak var IDLabel: UILabel!
+    
     
     // Card Back Outlets
     
@@ -178,12 +187,16 @@ class ProfileCell: UITableViewCell {
     func styleInterface() {
         
         // Card front radius
-        dpFront.layer.cornerRadius = dpFront.frame.size.width/24
+//        dpFront.layer.cornerRadius = dpFront.frame.size.width/24
+//        Utilities.addShadowCorners(image: dpFront, container: frontContainerView, shadowRadius: 10, opacity: 0.3, cornerRadius: 20)
+        Utilities.roundTopCorners(view: dpFront, corners: [.topLeft, .topRight], radius: 20)
+        Utilities.addDropShadow(view: frontContainerView, radius: 10, opacity: 0.3)
         
         // Card back radius
-        cardImageBack.layer.cornerRadius = cardImageBack.frame.size.width/24
-        cardImageBack.layer.shadowOpacity = 0.3
-        cardImageBack.layer.shadowRadius = 10
+//        cardImageBack.layer.cornerRadius = cardImageBack.frame.size.width/24
+//        cardImageBack.layer.shadowOpacity = 0.3
+//        cardImageBack.layer.shadowRadius = 10
+        Utilities.addShadowCorners(image: cardImageBack, container: backContainerView, shadowRadius: 10, opacity: 0.3, cornerRadius: 20)
         
         // Circular dp radius
         dpBack.layer.cornerRadius = dpBack.frame.size.width/2
@@ -196,11 +209,13 @@ class ProfileCell: UITableViewCell {
         lightImageView.layer.shadowOpacity = 0.5
         lightImageView.layer.shadowRadius = 10
         
-        // Apply drop shadow to name and title
-        nameFront.layer.shadowOpacity = 0.3
-        nameFront.layer.shadowRadius = 5
-        bioFront.layer.shadowOpacity = 0.3
-        bioFront.layer.shadowRadius = 5
+        // Apply dropshadow to IDLabel
+        IDLabel.layer.shadowOpacity = 0.3
+        IDLabel.layer.shadowRadius = 5
+        
+        // Bottom Corner radius for the white tab
+        Utilities.roundTopCorners(view: bottomWhiteTabView, corners: [.bottomLeft, .bottomRight], radius: cardImageBack.frame.size.width/24)
+    
         
     }
     
