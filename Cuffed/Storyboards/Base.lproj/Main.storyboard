@@ -3173,7 +3173,7 @@
                                                                                 </imageView>
                                                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g2U-dh-FQx" userLabel="Affinity Collection View">
                                                                                     <rect key="frame" x="30" y="173" width="294" height="55.5"/>
-                                                                                    <color key="backgroundColor" red="0.12941176469999999" green="0.1137254902" blue="0.23529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FAo-aa-qhh">
                                                                                         <size key="itemSize" width="170" height="43"/>
                                                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -3182,17 +3182,17 @@
                                                                                     </collectionViewFlowLayout>
                                                                                     <cells>
                                                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AffiliationCollectionViewCell" id="a6g-lg-Bsh" customClass="AffiliationCollectionViewCell" customModule="Cuffed" customModuleProvider="target">
-                                                                                            <rect key="frame" x="0.0" y="6.5" width="170" height="43"/>
+                                                                                            <rect key="frame" x="0.0" y="6" width="170" height="43.5"/>
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PNS-hB-J9S">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="170" height="43"/>
+                                                                                                <rect key="frame" x="0.0" y="0.0" width="170" height="43.5"/>
                                                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                                 <subviews>
-                                                                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVn-hJ-6m3" userLabel="AffinityView">
-                                                                                                        <rect key="frame" x="1.5" y="0.0" width="167" height="43"/>
+                                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVn-hJ-6m3" userLabel="AffinityView">
+                                                                                                        <rect key="frame" x="0.0" y="0.0" width="170" height="43.5"/>
                                                                                                         <subviews>
-                                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Affinity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jq-eT-c4j">
-                                                                                                                <rect key="frame" x="57.5" y="12.5" width="52.5" height="18"/>
+                                                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Affinity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jq-eT-c4j">
+                                                                                                                <rect key="frame" x="59" y="13" width="52.5" height="18"/>
                                                                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                                                                                 <nil key="textColor"/>
                                                                                                                 <nil key="highlightedColor"/>
@@ -3202,17 +3202,25 @@
                                                                                                         <constraints>
                                                                                                             <constraint firstItem="0jq-eT-c4j" firstAttribute="centerY" secondItem="bVn-hJ-6m3" secondAttribute="centerY" id="JMJ-3B-2we"/>
                                                                                                             <constraint firstItem="0jq-eT-c4j" firstAttribute="centerX" secondItem="bVn-hJ-6m3" secondAttribute="centerX" id="JR3-2C-cFv"/>
+                                                                                                            <constraint firstAttribute="width" constant="170" id="Ml8-Mz-4PY"/>
                                                                                                             <constraint firstAttribute="width" secondItem="bVn-hJ-6m3" secondAttribute="height" multiplier="35:9" id="nAF-pt-65z"/>
                                                                                                         </constraints>
                                                                                                     </view>
                                                                                                 </subviews>
                                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                                 <constraints>
+                                                                                                    <constraint firstAttribute="bottom" secondItem="bVn-hJ-6m3" secondAttribute="bottom" id="ALg-ff-jBz"/>
                                                                                                     <constraint firstItem="bVn-hJ-6m3" firstAttribute="centerX" secondItem="PNS-hB-J9S" secondAttribute="centerX" id="Ljl-Ur-47V"/>
+                                                                                                    <constraint firstItem="bVn-hJ-6m3" firstAttribute="top" secondItem="PNS-hB-J9S" secondAttribute="top" id="P4A-5c-J09"/>
+                                                                                                    <constraint firstItem="bVn-hJ-6m3" firstAttribute="width" secondItem="PNS-hB-J9S" secondAttribute="width" id="QNn-Lx-XHC"/>
+                                                                                                    <constraint firstItem="bVn-hJ-6m3" firstAttribute="centerY" secondItem="PNS-hB-J9S" secondAttribute="centerY" id="idN-Oi-atk"/>
+                                                                                                    <constraint firstItem="bVn-hJ-6m3" firstAttribute="leading" secondItem="PNS-hB-J9S" secondAttribute="leading" id="ol6-i2-NLx"/>
+                                                                                                    <constraint firstItem="bVn-hJ-6m3" firstAttribute="height" secondItem="PNS-hB-J9S" secondAttribute="height" id="y0J-Hi-khh"/>
                                                                                                 </constraints>
                                                                                             </collectionViewCellContentView>
                                                                                             <connections>
                                                                                                 <outlet property="affinityLabel" destination="0jq-eT-c4j" id="lE7-Ys-rtn"/>
+                                                                                                <outlet property="affinityView" destination="bVn-hJ-6m3" id="QGz-rP-Ywm"/>
                                                                                             </connections>
                                                                                         </collectionViewCell>
                                                                                     </cells>

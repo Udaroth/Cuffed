@@ -821,9 +821,7 @@ extension ProfileCell: UICollectionViewDataSource, UICollectionViewDelegate {
                 
                 cell.setLabel(affinity: "No Affiliations")
                 
-                cell.layer.cornerRadius = 10
-                
-//                Utilities.newShadowCorners(mainView: cell as UIView, shadowRadius: 3, shadowOpacity: 0.2, cornerRadius: 10)
+                cell.styleCell()
                 
                 return cell
                 

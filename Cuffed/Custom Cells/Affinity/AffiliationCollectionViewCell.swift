@@ -12,11 +12,16 @@ class AffiliationCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var affinityLabel: UILabel!
     
+    @IBOutlet weak var affinityView: UIView!
     
     func setLabel(affinity: String){
         
         affinityLabel.text = affinity
         
+    }
+    
+    func styleCell(){
+        Utilities.newShadowCorners(mainView: affinityView, shadowRadius: 3, shadowOpacity: 0.2, cornerRadius: 10)
     }
     
 }
