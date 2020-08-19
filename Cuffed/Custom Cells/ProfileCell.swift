@@ -187,15 +187,10 @@ class ProfileCell: UITableViewCell {
     func styleInterface() {
         
         // Card front radius
-//        dpFront.layer.cornerRadius = dpFront.frame.size.width/24
-//        Utilities.addShadowCorners(image: dpFront, container: frontContainerView, shadowRadius: 10, opacity: 0.3, cornerRadius: 20)
         Utilities.roundTopCorners(view: dpFront, corners: [.topLeft, .topRight], radius: 20)
         Utilities.addDropShadow(view: frontContainerView, radius: 10, opacity: 0.3)
         
         // Card back radius
-//        cardImageBack.layer.cornerRadius = cardImageBack.frame.size.width/24
-//        cardImageBack.layer.shadowOpacity = 0.3
-//        cardImageBack.layer.shadowRadius = 10
         Utilities.addShadowCorners(image: cardImageBack, container: backContainerView, shadowRadius: 10, opacity: 0.3, cornerRadius: 20)
         
         // Circular dp radius
@@ -215,6 +210,11 @@ class ProfileCell: UITableViewCell {
         
         // Bottom Corner radius for the white tab
         Utilities.roundTopCorners(view: bottomWhiteTabView, corners: [.bottomLeft, .bottomRight], radius: cardImageBack.frame.size.width/24)
+        
+        // Dropshadow for the gems
+        for image in gemsBack {
+            Utilities.addDropShadow(view: image, radius: 3, opacity: 0.2)
+        }
     
         
     }
@@ -576,7 +576,7 @@ extension ProfileCell: ProfileProtocol {
         
         // Update bio
         bioFront.text = profileToDisplay.bio
-        bioBack.text = profileToDisplay.bio
+//        bioBack.text = profileToDisplay.bio
         
         // Update front and back DP
         guard profileToDisplay.profileImage != nil else { return }
@@ -822,6 +822,8 @@ extension ProfileCell: UICollectionViewDataSource, UICollectionViewDelegate {
                 cell.setLabel(affinity: "No Affiliations")
                 
                 cell.layer.cornerRadius = 10
+                
+//                Utilities.newShadowCorners(mainView: cell as UIView, shadowRadius: 3, shadowOpacity: 0.2, cornerRadius: 10)
                 
                 return cell
                 

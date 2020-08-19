@@ -70,7 +70,7 @@ class Animations {
 //            button.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
 //        }, completion: nil)
         
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.05) {
             button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }
         

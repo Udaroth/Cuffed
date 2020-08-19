@@ -262,20 +262,21 @@ class DetailCardViewController: UIViewController {
         }
         
 
-        crushView.layer.cornerRadius = 15
-        tuneView.layer.cornerRadius = 15
-        followView.layer.cornerRadius = 15
-        dmView.layer.cornerRadius = 15
-        flipView.layer.cornerRadius = 15
-        otherView.layer.cornerRadius = 15
+        
+        Utilities.newShadowCorners(mainView: crushView, shadowRadius: 5, shadowOpacity: 0.25, cornerRadius: 15)
+        Utilities.newShadowCorners(mainView: tuneView, shadowRadius: 5, shadowOpacity: 0.25, cornerRadius: 15)
+        Utilities.newShadowCorners(mainView: followView, shadowRadius: 5, shadowOpacity: 0.25, cornerRadius: 15)
+        Utilities.newShadowCorners(mainView: dmView, shadowRadius: 5, shadowOpacity: 0.25, cornerRadius: 15)
+        Utilities.newShadowCorners(mainView: flipView, shadowRadius: 5, shadowOpacity: 0.25, cornerRadius: 15)
+        Utilities.newShadowCorners(mainView: otherView, shadowRadius: 5, shadowOpacity: 0.25, cornerRadius: 15)
+        
+//        tuneView.layer.cornerRadius = 15
+//        followView.layer.cornerRadius = 15
+//        dmView.layer.cornerRadius = 15
+//        flipView.layer.cornerRadius = 15
+//        otherView.layer.cornerRadius = 15
         
         
-//                Utilities.styleCardBackButton(crushButton, Con.cardBackButtons.crush.colourTop, Con.cardBackButtons.crush.colourBottom)
-//
-//                Utilities.styleCardBackButton(dmButton, Con.cardBackButtons.dm.colourTop, Con.cardBackButtons.dm.colourBottom)
-//
-//                Utilities.styleCardBackButton(followButton, Con.cardBackButtons.follow.colourTop, Con.cardBackButtons.follow.colourBottom)
-//
     
            
         

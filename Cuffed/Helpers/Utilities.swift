@@ -592,17 +592,7 @@ class Utilities {
     // Add drop shadow, and round the corners
     static func addShadowCorners(image:UIView, container:UIView, shadowRadius:CGFloat, opacity:Float, cornerRadius:CGFloat){
                 
-        
-            // Set image gradient and corner radius
-//            let gradient = CAGradientLayer()
-//            gradient.frame = image.bounds
-//
-//            gradient.colors = [Con.Colors.pinkTop, Con.Colors.pinkBot]
-//
-//            gradient.startPoint = CGPoint(x: 0, y: 0)
-//            gradient.endPoint = CGPoint(x: 1, y: 1)
-//
-//            image.layer.addSublayer(gradient)
+    
 
             image.layer.cornerRadius = cornerRadius
         
@@ -616,6 +606,22 @@ class Utilities {
             container.layer.shadowOpacity = opacity
             container.layer.shadowRadius = shadowRadius
         
+        
+    }
+    
+    static func newShadowCorners(mainView:UIView, shadowRadius:CGFloat, shadowOpacity:Float, cornerRadius:CGFloat){
+        mainView.backgroundColor = UIColor.clear
+        mainView.layer.shadowRadius = shadowRadius
+        mainView.layer.shadowOpacity = shadowOpacity
+        mainView.layer.shadowOffset = .zero
+        
+        let borderView = UIView()
+        borderView.frame = mainView.bounds
+        borderView.layer.cornerRadius = cornerRadius
+        borderView.layer.masksToBounds = true
+        borderView.backgroundColor = UIColor.white
+        mainView.addSubview(borderView)
+        mainView.sendSubviewToBack(borderView)
         
     }
     

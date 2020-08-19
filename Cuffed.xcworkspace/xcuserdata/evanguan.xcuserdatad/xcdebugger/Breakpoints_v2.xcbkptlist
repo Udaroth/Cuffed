@@ -686,8 +686,8 @@
             filePath = "Cuffed/Custom Cells/ProfileCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "915"
-            endingLineNumber = "915"
+            startingLineNumber = "917"
+            endingLineNumber = "917"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -702,8 +702,8 @@
             filePath = "Cuffed/Custom Cells/ProfileCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "905"
-            endingLineNumber = "905"
+            startingLineNumber = "907"
+            endingLineNumber = "907"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1374,8 +1374,8 @@
             filePath = "Cuffed/Custom Cells/ProfileCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "851"
-            endingLineNumber = "851"
+            startingLineNumber = "853"
+            endingLineNumber = "853"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1390,8 +1390,8 @@
             filePath = "Cuffed/Custom Cells/ProfileCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "903"
-            endingLineNumber = "903"
+            startingLineNumber = "905"
+            endingLineNumber = "905"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1406,8 +1406,8 @@
             filePath = "Cuffed/Custom Cells/ProfileCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "922"
-            endingLineNumber = "922"
+            startingLineNumber = "924"
+            endingLineNumber = "924"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1422,8 +1422,8 @@
             filePath = "Cuffed/Custom Cells/ProfileCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "919"
-            endingLineNumber = "919"
+            startingLineNumber = "921"
+            endingLineNumber = "921"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
